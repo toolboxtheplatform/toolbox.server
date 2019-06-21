@@ -20,13 +20,15 @@ const httpResponses = {
 
 // Register new users
 function registerUser(request, response) {
-  let { email, password } = request.body;
+  let { name, email, username, password } = request.body;
 
-  if (!email || !password) {
+  if (!username || !password) {
     response.json(httpResponses.onValidationError);
   } else {
     let newUser = new User({
+      name: name,
       email: email,
+      username: username,
       password: password
     });
 
