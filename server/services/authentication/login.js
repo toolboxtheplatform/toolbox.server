@@ -39,7 +39,11 @@ function loginUser(request, response) {
           expiresIn: 10080
         });
 
-        return response.json({ success: true, token: 'JWT ' + token });
+        return response.json({
+          success: true,
+          token: 'JWT ' + token,
+          role: user.role
+        });
       }
 
       response.send(httpResponse.onAuthenticationFail);
