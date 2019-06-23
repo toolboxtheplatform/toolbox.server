@@ -5,7 +5,13 @@ const ToolsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  link: {
+  homePage: {
+    type: String,
+    lowercase: true,
+    unique: true,
+    required: true
+  },
+  logoPath: {
     type: String,
     lowercase: true,
     unique: true,

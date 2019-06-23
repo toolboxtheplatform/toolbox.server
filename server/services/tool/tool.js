@@ -3,7 +3,12 @@
 const Tools = require('../../models/Tools');
 
 function add(request, response) {
-  new Tools(request.body).save((error, doc) => {
+  const logoPath = `./${request.body.name}.png`;
+  new Tools({
+    name: request.body,
+    homePage: request.body.link,
+    logPath: logPath
+  }).save((error, doc) => {
     if (error) return response.json(errmsg);
     let newObj = doc.toJSON();
     newObj['success'] = true;
