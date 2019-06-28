@@ -21,6 +21,17 @@ function add(request, response) {
   });
 }
 
+function fetch(request, response) {
+  Tools.find({})
+    .then(docs => {
+      return response.json(docs);
+    })
+    .catch(error => {
+      return response.json(error);
+    });
+}
+
 module.exports = {
-  add: add
+  add: add,
+  fetch: fetch
 }
