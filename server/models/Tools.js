@@ -8,13 +8,11 @@ const ToolsSchema = new mongoose.Schema({
   homePage: {
     type: String,
     lowercase: true,
-    unique: true,
     required: true
   },
   logoPath: {
     type: String,
     lowercase: true,
-    unique: true,
     required: true
   }
 }, { timestamps: true });
