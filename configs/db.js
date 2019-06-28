@@ -1,4 +1,4 @@
 module.exports = { 
-  'secret': 'thisissomethingsecrete',
-  'database': 'mongodb://127.0.0.1:27017/AppManagement'
+  'secret': 'ASDas4ASDASDQ$!@#$Edfdsfasew4234DADasd',
+  'database': 'mongodb://127.0.0.1:27017/Tools'
 };
