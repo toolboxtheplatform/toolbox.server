@@ -4,17 +4,20 @@ const Tools = require('../../models/Tools');
 
 function add(request, response) {
   const logoPath = `./${request.body.name}.png`;
-  new Tools({
-    name: request.body,
+  const newTool = {
+    name: request.body.name,
     homePage: request.body.link,
-    logPath: logPath
-  }).save((error, doc) => {
-    if (error) return response.json(errmsg);
-    let newObj = doc.toJSON();
-    newObj['success'] = true;
-    newObj['message'] = 'New Tool Successfully Added';
+    logoPath: logoPath
+  };
 
-    response.json(newObj);
+  new Tools(newTool).save().then(doc => {
+    let newToolToJSON = doc.toJSON();
+    newToolToJSON['success'] = true;
+    newToolToJSON['message'] = 'New Tool Successfully Added';
+
+    return response.json(newToolToJSON);
+  }).catch(error => {
+    return response.json(error);
   });
 }
 
