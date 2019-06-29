@@ -10,6 +10,11 @@ const ToolsSchema = new mongoose.Schema({
     lowercase: true,
     required: true
   },
+  className: {
+    type: String,
+    lowercase: true,
+    required: true
+  },
   logoPath: {
     type: String,
     lowercase: true,
