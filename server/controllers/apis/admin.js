@@ -10,5 +10,6 @@ let router = express.Router();
 router.post('/tool/new', passport.authenticate('jwt', { session: false }), toolService.add);
 router.get('/tools/list', passport.authenticate('jwt', { session: false }), toolService.fetch);
 router.post('/employees/new', passport.authenticate('jwt', { session: false }), employeesService.add);
+router.get('/employees/list', passport.authenticate('jwt', { session: false }), employeesService.list);
 
 module.exports = router;

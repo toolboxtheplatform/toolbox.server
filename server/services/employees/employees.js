@@ -14,6 +14,14 @@ function add(request, response) {
     });
 }
 
+function list(request, response) {
+  User.find({}, (error, docs) => {
+    if (error) return response.json(error);
+    return response.json(docs);
+  })
+}
+
 module.exports = {
-  add: add
+  add: add,
+  list: list
 }
