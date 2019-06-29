@@ -3,11 +3,12 @@
 const Tools = require('../../models/Tools');
 
 function add(request, response) {
-  const logoPath = `./${request.body.name}.png`;
+  const logoPath = `http://localhost:3001/src/components/admin/tool/assets/${request.body.name.charAt(0).toUpperCase()}${request.body.name.slice(1)}.png`;
   const newTool = {
-    name: request.body.name,
+    name: request.body.name.charAt(0).toUpperCase() + request.body.name.slice(1),
     homePage: request.body.link,
-    logoPath: logoPath
+    logoPath: logoPath,
+    className: request.body.name.toLowerCase()
   };
 
   new Tools(newTool).save().then(doc => {
