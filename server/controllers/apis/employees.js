@@ -6,6 +6,6 @@ const employeesService = require('../../services/employees/employees');
 
 let router = express.Router();
 
-router.post('/employees/new', passport.authenticate('jwt', { session: false }), employeesService.add);
+router.get('/tools/fetch', passport.authenticate('jwt', { session: false }), employeesService.fetch);
 
 module.exports = router;

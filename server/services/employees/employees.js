@@ -57,6 +57,14 @@ function list(request, response) {
   });
 }
 
+function fetch(request, response) {
+  UserTools
+    .find({ userID: request.query.userid }, (error, docs) => {
+      if (error) return response.json(error);
+      response.json(docs);
+    });
+}
+
 function saveUserTools(tools, user) {
   return new Promise((resolve, reject) => {
     let toolItems = [];
@@ -80,5 +88,6 @@ function saveUserTools(tools, user) {
 
 module.exports = {
   add: add,
-  list: list
+  list: list,
+  fetch: fetch
 }
