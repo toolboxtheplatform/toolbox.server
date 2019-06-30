@@ -42,7 +42,8 @@ function loginUser(request, response) {
         return response.json({
           success: true,
           token: 'JWT ' + token,
-          role: user.role
+          role: user.role,
+          userID: user._id
         });
       }
 
