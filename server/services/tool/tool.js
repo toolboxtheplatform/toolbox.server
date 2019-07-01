@@ -18,7 +18,14 @@ function add(request, response) {
 
     return response.json(newToolToJSON);
   }).catch(error => {
-    return response.json(error);
+    return response.json({
+      success: false,
+      messages: [
+        error.errors.name.message,
+        error.errors.homePage.message,
+        error.errors.className.message
+      ]
+    });
   });
 }
 
@@ -28,7 +35,7 @@ function fetch(request, response) {
       return response.json(docs);
     })
     .catch(error => {
-      return response.json(error);
+      return response.json({ success: false, message: error.ValidationError });
     });
 }
 
