@@ -85,7 +85,30 @@ function fetch(request, response) {
     });
 }
 
+function remove(request, response) {
+  if (request.body.admin.role === 'Admin') {
+    Tools
+    .findOneAndDelete({ _id: request.body.toolID })
+    .exec((error, doc) => {
+      if (error) return response.json(error);
+      Tools
+      .find({})
+      .then(docs => {
+        response.json({
+          'success': true,
+          'message': `${doc.name} is deleted successfully.`,
+          'tools': docs
+        });
+      })
+      .catch(error => {
+        return response.json({success: false, message: error});
+      })
+    });
+  }
+}
+
 module.exports = {
   add: add,
-  fetch: fetch
+  fetch: fetch,
+  remove: remove
 }
