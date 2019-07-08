@@ -13,31 +13,32 @@ function add(request, response) {
     })
     .save()
     .then(doc => {
-      saveUserTools(request.body.data.tools, doc)
-        .then(res => {
-          User
-            .find({})
-            .exec((error, docs) => {
-            if (error) return response.json(error);
-            return response.json(docs);
-            // docs.map(user => {
-            //   UserTools
-            //     .find({ userID: user._id })
-            //     .exec((error, tools) => {
-            //       list.push({
-            //         'user': [{
-            //           'data': user,
-            //           'tools': tools
-            //         }]
-            //       });
+      return response.json(doc);
+      // saveUserTools(request.body.data.tools, doc)
+      //   .then(res => {
+      //     User
+      //       .find({})
+      //       .exec((error, docs) => {
+      //       if (error) return response.json(error);
+      //       return response.json(docs);
+      //       // docs.map(user => {
+      //       //   UserTools
+      //       //     .find({ userID: user._id })
+      //       //     .exec((error, tools) => {
+      //       //       list.push({
+      //       //         'user': [{
+      //       //           'data': user,
+      //       //           'tools': tools
+      //       //         }]
+      //       //       });
 
-            //       return response.json(list);
-            //   });
-            // });
-          });
-        })
-        .catch(error => {
-        });
+      //       //       return response.json(list);
+      //       //   });
+      //       // });
+      //     });
+      //   })
+      //   .catch(error => {
+      //   });
     })
     .catch(error => {
       return response.json(error);
