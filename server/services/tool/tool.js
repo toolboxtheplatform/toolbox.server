@@ -25,7 +25,7 @@ function add(request, response) {
         .then(doc => {
           let newToolToJSON = doc.toJSON();
           newToolToJSON['success'] = true;
-          newToolToJSON['message'] = 'New Tool Successfully Added';
+          newToolToJSON['messages'] = ['New Tool Successfully Added'];
           return response.json(newToolToJSON);
         })
         .catch(error => {
@@ -58,7 +58,7 @@ function add(request, response) {
       .then(doc => {
         let newToolToJSON = doc.toJSON();
         newToolToJSON['success'] = true;
-        newToolToJSON['message'] = 'New Tool Successfully Added';
+        newToolToJSON['messages'] = ['New Tool Successfully Added'];
         return response.json(newToolToJSON);
       })
       .catch(error => {
