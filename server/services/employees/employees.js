@@ -1,6 +1,7 @@
 const User = require('../../models/User');
 const Tools = require('../../models/Tools');
 const UserTools = require('../../models/UserTools');
+const checkAdmin = require('../../utils');
 
 function add(request, response) {
   let list = [];
@@ -44,17 +45,25 @@ function add(request, response) {
 }
 
 function list(request, response) {
-  User.find({}).exec((error, docs) => {
-    if (error) return response.json(error);
-    Tools.find({}).exec((err, tools) => {
-      if (err) return response.json(err);
-      let obj = [{
-        'users': docs,
-        'tools': tools
-      }];
-      return response.json(obj);
+  checkAdmin.isAdmin(request.query.userID)
+  .then(admin => {
+    User.find({}).exec((error, docs) => {
+      if (error) return response.json(error);
+      Tools.find({}).exec((err, tools) => {
+        if (err) return response.json(err);
+        let obj = [{
+          'users': docs,
+          'tools': tools
+        }];
+        return response.json(obj);
+      });
     });
+  })
+  .catch(error => {
+    return response.json(error);
   });
+
+
 }
 
 function fetch(request, response) {
