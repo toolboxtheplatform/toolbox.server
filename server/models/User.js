@@ -22,6 +22,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profession: {
+    type: String
+  },
   role: {
     type: String,
     enum: ['Employee', 'Admin'],

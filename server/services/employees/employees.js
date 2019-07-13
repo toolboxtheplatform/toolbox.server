@@ -4,12 +4,15 @@ const UserTools = require('../../models/UserTools');
 const checkAdmin = require('../../utils');
 
 function add(request, response) {
+  // console.log(`${request.body.data.role.charAt(0).toUpperCase()}${request.body.data.role.slice(1)}`)
   let list = [];
   new User({
       name: request.body.data.name,
       email: request.body.data.email,
       username: request.body.data.username,
-      password: request.body.data.password
+      password: request.body.data.password,
+      profession: request.body.data.profession,
+      role: `${request.body.data.role.charAt(0).toUpperCase()}${request.body.data.role.slice(1)}`
     })
     .save()
     .then(doc => {
