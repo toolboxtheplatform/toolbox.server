@@ -4,7 +4,7 @@ const Tools = require('../../models/Tools');
 const UserTools = require('../../models/UserTools');
 
 function add(request, response) {
-  const logoPath = `http://localhost:3001/src/components/admin/tool/assets/${request.body.name.charAt(0).toUpperCase()}${request.body.name.slice(1)}.png`;
+  const logoPath = `http://localhost:3001/src/components/assets/${request.body.name.charAt(0).toUpperCase()}${request.body.name.slice(1)}.png`;
   Tools.findOne({ name: request.body.name }, (error, tool) => {
     if (error) return response.json(error);
     if (!tool) {
