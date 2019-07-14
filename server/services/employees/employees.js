@@ -4,54 +4,35 @@ const UserTools = require('../../models/UserTools');
 const checkAdmin = require('../../utils');
 
 function add(request, response) {
-  // console.log(`${request.body.data.role.charAt(0).toUpperCase()}${request.body.data.role.slice(1)}`)
   let list = [];
   new User({
-      name: request.body.data.name,
-      email: request.body.data.email,
-      username: request.body.data.username,
-      password: request.body.data.password,
-      profession: request.body.data.profession,
-      role: `${request.body.data.role.charAt(0).toUpperCase()}${request.body.data.role.slice(1)}`
-    })
-    .save()
-    .then(doc => {
-      return response.json(doc);
-      // saveUserTools(request.body.data.tools, doc)
-      //   .then(res => {
-      //     User
-      //       .find({})
-      //       .exec((error, docs) => {
-      //       if (error) return response.json(error);
-      //       return response.json(docs);
-      //       // docs.map(user => {
-      //       //   UserTools
-      //       //     .find({ userID: user._id })
-      //       //     .exec((error, tools) => {
-      //       //       list.push({
-      //       //         'user': [{
-      //       //           'data': user,
-      //       //           'tools': tools
-      //       //         }]
-      //       //       });
-
-      //       //       return response.json(list);
-      //       //   });
-      //       // });
-      //     });
-      //   })
-      //   .catch(error => {
-      //   });
-    })
-    .catch(error => {
-      return response.json(error);
+    name: request.body.data.name,
+    email: request.body.data.email,
+    username: request.body.data.username,
+    password: request.body.data.password,
+    profession: request.body.data.profession,
+    role: `${request.body.data.role.charAt(0).toUpperCase()}${request.body.data.role.slice(1)}`
+  })
+  .save()
+  .then(doc => {
+    User.find({})
+    .sort({'createdAt': 'asc'})
+    .exec((error, docs) => {
+      if (error) return response.json(error);
+      return response.json(docs);
     });
+  })
+  .catch(error => {
+    return response.json(error);
+  });
 }
 
 function list(request, response) {
   checkAdmin.isAdmin(request.query.userID)
   .then(admin => {
-    User.find({}).exec((error, docs) => {
+    User.find({})
+      .sort({'createdAt': 'desc'})
+      .exec((error, docs) => {
       if (error) return response.json(error);
       Tools.find({}).exec((err, tools) => {
         if (err) return response.json(err);
@@ -66,13 +47,13 @@ function list(request, response) {
   .catch(error => {
     return response.json(error);
   });
-
-
 }
 
 function fetch(request, response) {
   UserTools
-    .find({ userID: request.query.userid }, (error, docs) => {
+    .find({ userID: request.query.userid })
+    .sort({'createdAt': 'desc'})
+    .exec((error, docs) => {
       if (error) return response.json(error);
       response.json(docs);
     });
