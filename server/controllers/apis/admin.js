@@ -7,10 +7,9 @@ const employeesService = require('../../services/employees/employees');
 
 let router = express.Router();
 
-router.post('/tool/new', passport.authenticate('jwt', { session: false }), toolService.add);
-router.delete('/tool/delete', passport.authenticate('jwt', { session: false }), toolService.remove);
-router.get('/tools/list', passport.authenticate('jwt', { session: false }), toolService.fetch);
-router.post('/employees/new', passport.authenticate('jwt', { session: false }), employeesService.add);
-router.get('/employees/list', passport.authenticate('jwt', { session: false }), employeesService.list);
+router.get('/employee', passport.authenticate('jwt', { session: false }), employeesService.list);
+router.post('/employee', passport.authenticate('jwt', { session: false }), employeesService.add);
+router.delete('/employee', passport.authenticate('jwt', { session: false }), employeesService.remove);
+// router.update('/employee', passport.authenticate('jwt', { session: false }), employeesService.update); // yet to be implemented
 
 module.exports = router;

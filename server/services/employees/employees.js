@@ -80,8 +80,31 @@ function saveUserTools(tools, user) {
   });
 }
 
+function remove(request, response) {
+  checkAdmin
+    .isAdmin(request.body.admin.userID)
+    .then(admin => {
+      User.findOneAndDelete({ _id: request.body.employeeID }, (error, doc) => {
+        if (error) return response.json(error);
+        return response.json({
+          success: true,
+          message: 'Successfully deleted',
+          employee: doc
+        });
+      })
+    })
+    .catch(error => {
+      return response.json({
+        success: false,
+        message: 'You are not an admin',
+        error: error
+      })
+    });
+}
+
 module.exports = {
   add: add,
   list: list,
-  fetch: fetch
+  fetch: fetch,
+  remove: remove
 }

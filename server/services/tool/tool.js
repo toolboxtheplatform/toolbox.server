@@ -75,7 +75,7 @@ function add(request, response) {
   });
 }
 
-function fetch(request, response) {
+function get(request, response) {
   Tools.find({})
     .then(docs => {
       return response.json(docs);
@@ -109,6 +109,6 @@ function remove(request, response) {
 
 module.exports = {
   add: add,
-  fetch: fetch,
+  get: get,
   remove: remove
 }
