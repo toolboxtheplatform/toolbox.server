@@ -11,6 +11,7 @@ router.get('/tools/fetch', passport.authenticate('jwt', { session: false }), emp
 router.get('/', passport.authenticate('jwt', { session: false }), employeesService.list);
 router.post('/new', passport.authenticate('jwt', { session: false }), employeesService.add);
 router.delete('/delete', passport.authenticate('jwt', { session: false }), employeesService.remove);
+router.get('/profile', passport.authenticate('jwt', { session: false }), employeesService.getProfile);
 // router.update('/update', passport.authenticate('jwt', { session: false }), employeesService.add); // Yet to be implemented
 
 module.exports = router;
