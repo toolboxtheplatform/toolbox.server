@@ -16,7 +16,7 @@ function add(request, response) {
   .save()
   .then(doc => {
     User.find({})
-    .sort({'createdAt': 'asc'})
+    .sort({'createdAt': 'desc'})
     .exec((error, docs) => {
       if (error) return response.json(error);
       return response.json(docs);
