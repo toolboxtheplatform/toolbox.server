@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   profession: {
     type: String
@@ -52,6 +52,20 @@ UserSchema.pre('save', function(next) {
     });
   } else {
     return next();
+  }
+});
+
+UserSchema.pre('findOneAndUpdate', function(next) {
+  const update = this.getUpdate();
+  if (update.password !== '' && update.password !== undefined) {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(update.password, salt, (err, hash) => {
+        this.getUpdate().password = hash;
+        next();
+      })
+    })
+  } else {
+    next();
   }
 });
 

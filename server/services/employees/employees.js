@@ -102,18 +102,9 @@ function remove(request, response) {
     });
 }
 
-function getProfile(request, response) {
-  User.findOne({ _id: request.query.id })
-    .exec((error, doc) => {
-      if (error) return response.json(error);
-      response.json(doc);
-    });
-}
-
 module.exports = {
   add: add,
   list: list,
   fetch: fetch,
   remove: remove,
-  getProfile: getProfile,
 }
