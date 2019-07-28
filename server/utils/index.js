@@ -9,6 +9,7 @@ function isAdmin(id) {
         success: false,
         message: 'This is a restricted area and can only be access by Admins.'
       });
+      resolve({ success: true });
     });
   });
 }

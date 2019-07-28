@@ -49,15 +49,15 @@ function list(request, response) {
   });
 }
 
-function fetch(request, response) {
-  UserTools
-    .find({ userID: request.query.userid })
-    .sort({'createdAt': 'desc'})
-    .exec((error, docs) => {
-      if (error) return response.json(error);
-      response.json(docs);
-    });
-}
+// function fetch(request, response) {
+//   UserTools
+//     .find({ userID: request.query.userid })
+//     .sort({'createdAt': 'desc'})
+//     .exec((error, employeeTools) => {
+//       if (error) return response.json(error);
+//       return response.json(employeeTools);
+//     });
+// }
 
 function saveUserTools(tools, user) {
   return new Promise((resolve, reject) => {
@@ -105,6 +105,6 @@ function remove(request, response) {
 module.exports = {
   add: add,
   list: list,
-  fetch: fetch,
+  // fetch: fetch,
   remove: remove,
 }

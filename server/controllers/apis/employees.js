@@ -6,7 +6,7 @@ const employeesService = require('../../services/employees/employees');
 
 let router = express.Router();
 
-router.get('/tools/fetch', passport.authenticate('jwt', { session: false }), employeesService.fetch);
+// router.get('/tools/fetch', passport.authenticate('jwt', { session: false }), employeesService.fetch);
 
 router.get('/', passport.authenticate('jwt', { session: false }), employeesService.list);
 router.post('/new', passport.authenticate('jwt', { session: false }), employeesService.add);
