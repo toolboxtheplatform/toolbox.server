@@ -108,6 +108,7 @@ function remove(request, response) {
   if (request.body.admin.role === 'Admin' && request.body.admin.role.toLowerCase() === 'admin') {
     Tools
     .findOneAndDelete({ _id: request.body.toolID })
+    .sort({'createdAt': 'desc'})
     .exec((error, doc) => {
       if (error) return response.json(error);
       Tools
@@ -126,10 +127,11 @@ function remove(request, response) {
   } else {
     UserTools
     .findOneAndDelete({ _id: request.body.toolID })
+    .sort({'createdAt': 'desc'})
     .exec((error, doc) => {
       if (error) return response.json(error);
       UserTools
-        .find({})
+        .find({ userID: request.body.userID })
         .then(docs => {
           response.json({
             'success': true,
@@ -144,8 +146,55 @@ function remove(request, response) {
   }
 }
 
+function update(request, response) {
+  if (request.body.admin !== undefined) {
+    let record = {
+      name: request.body.name,
+      homePage: request.body.link,
+    };
+    Tools.findOneAndUpdate({ _id: request.body.id }, record, { new: true })
+      .exec()
+      .then(() => {
+        Tools.find({})
+          .sort({'createdAt': 'desc'})
+          .exec()
+          .then(docs => {
+            return response.json(docs);
+          })
+          .catch(error => {
+            return response.json(error);
+          });
+      })
+      .catch(error => {
+        return response.json(error);
+      });
+  } else {
+    let record = {
+      name: request.body.name,
+      homePage: request.body.link,
+    };
+    UserTools.findOneAndUpdate({ _id: request.body.id }, record, { new: true })
+      .exec()
+      .then(() => {
+        UserTools.find({ userID: request.body.userID })
+          .sort({'createdAt': 'desc'})
+          .exec()
+          .then(docs => {
+            return response.json(docs);
+          })
+          .catch(error => {
+            return response.json(error);
+          });
+      })
+      .catch(error => {
+        return response.json(error);
+      });
+    }
+}
+
 module.exports = {
   add: add,
   get: get,
-  remove: remove
+  remove: remove,
+  update: update,
 }
