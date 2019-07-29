@@ -113,6 +113,7 @@ function remove(request, response) {
       if (error) return response.json(error);
       Tools
       .find({})
+      .sort({'createdAt': 'desc'})
       .then(docs => {
         response.json({
           'success': true,
@@ -132,6 +133,7 @@ function remove(request, response) {
       if (error) return response.json(error);
       UserTools
         .find({ userID: request.body.userID })
+        .sort({'createdAt': 'desc'})
         .then(docs => {
           response.json({
             'success': true,
