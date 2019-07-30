@@ -19,10 +19,11 @@ function updateProfile(request, response) {
   if (request.body.password) {
     record['password'] = request.body.password;
   }
-  User.findOneAndUpdate({ _id: request.body.id }, record,{ new: true })
+  User.findOneAndUpdate({ _id: request.body.id }, record, { new: true })
     .exec()
     .then(() => {
-      User.findOne({ _id: request.body.id })
+      User.find({})
+        .sort({'createdAt': 'desc'})
         .then(doc => {
           return response.json(doc);
         })
