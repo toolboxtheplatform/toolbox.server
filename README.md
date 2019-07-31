@@ -1,5 +1,6 @@
 <p align="center">
   <img src="screenshots/logo.png" />
+  <h1 align="center">Toolbox</h1>
 </p>
 
 **Note**: To use this project with built in user interface then use its client side implementation which could be found [here](https://github.com/zafar-saleem/toolbox-app)
