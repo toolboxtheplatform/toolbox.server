@@ -86,11 +86,16 @@ function remove(request, response) {
     .then(admin => {
       User.findOneAndDelete({ _id: request.body.employeeID }, (error, doc) => {
         if (error) return response.json(error);
-        return response.json({
-          success: true,
-          message: 'Successfully deleted',
-          employee: doc
-        });
+        User.find({})
+          .then(docs => {
+            return response.json(docs);
+          })
+          .catch(error => {
+            return response.json({
+              success: false,
+              message: 'Deleted Successfully.',
+            });
+          })
       })
     })
     .catch(error => {
