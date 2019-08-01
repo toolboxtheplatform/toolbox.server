@@ -87,6 +87,7 @@ function remove(request, response) {
       User.findOneAndDelete({ _id: request.body.employeeID }, (error, doc) => {
         if (error) return response.json(error);
         User.find({})
+          .sort({'createdAt': 'desc'})
           .then(docs => {
             return response.json(docs);
           })
