@@ -108,9 +108,29 @@ function remove(request, response) {
     });
 }
 
+function search(request, response) {
+  if (request.query.role.toLowerCase() !== 'admin') {
+    return response.json('Not Admin');
+  }
+
+  checkAdmin.isAdmin(request.query.userID)
+    .then(admin => {
+      let search = request.query.term;
+      let regex = new RegExp(search, 'i');
+
+      User.find({ $or: [ { username: regex }] }, (error, docs) => {
+        if (error) return response.json(error);
+        return response.json(docs)
+      });
+    })
+    .catch(error => {
+      return response.json('httpResponses.onServerAdminFail');
+    });
+}
+
 module.exports = {
   add: add,
   list: list,
-  // fetch: fetch,
   remove: remove,
+  search: search,
 }
