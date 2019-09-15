@@ -3,7 +3,7 @@
   <h1 align="center">Toolbox</h1>
 </p>
 
-**Note**: To use this project with built in user interface then use its client side implementation which could be found [here](https://github.com/zafar-saleem/toolbox-app)
+**Note**: To use this project with built in user interface then use its client side implementation which could be found [here](https://github.com/toolboxtheplatform/toolbox.app)
 
 
 Currently many organizations use many, if not countless, online services, tools, web apps etc to bring productivity to their employees daily work. For employees, if it brings productivity on one hand then on the other hand they need to manage all these tools so that they can access them conveniently.
@@ -28,7 +28,7 @@ The technology stack used is below
 * Passport
 
 ## Client side of this project
-The client side of this project could be found [here](https://github.com/zafar-saleem/toolbox-app)
+The client side of this project could be found [here](https://github.com/toolboxtheplatform/toolbox.app)
 
 ## Usage
 To run this project locally, use `nodemon` package. Run `nodemon index.js` in toolbox-server folder which will run its server. Then use the client side and run its server using `npm start` command and visit the url mentioned in terminal of the client side.
