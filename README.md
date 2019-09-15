@@ -3,6 +3,12 @@
   <h1 align="center">Toolbox</h1>
 </p>
 
+<p align="center">
+  <a target="_blank" href='https://www.reddit.com/user/contactustoolbox'>Reddit</a>
+  <a target="_blank" href='https://www.facebook.com/pg/Toolboxtp-107283820665269/about/'>Facebook</a>
+  <a target="_blank" href='https://twitter.com/ToolboxTp'>Twitter</a>
+</p>
+
 **Note**: To use this project with built in user interface then use its client side implementation which could be found [here](https://github.com/toolboxtheplatform/toolbox.app)
 
 
